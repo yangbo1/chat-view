@@ -267,7 +267,7 @@ body {
 	font-size:12px;
 	text-align:center;
 	margin:15px 0;
-	width:290px;
+	width:100%;
 	display:block;	
 }
 #chat-messages div.message{
@@ -279,6 +279,20 @@ body {
 	  padding: 0 58px 30px 0;
 	  margin-right: -19px;
 	  margin-left: 19px;
+}
+#chat-messages div.message.right span{
+	float: left;
+	margin-left: 85%;
+	margin-top: 5%;
+	background: #f0f4f7;
+	font-weight: 500;
+}
+#chat-messages div.message span{
+	float: right;
+	margin-right: 85%;
+	margin-top: 5%;
+	background: #f0f4f7;
+	font-weight: 500;
 }
 #chat-messages .message img{
 	  float: left;
@@ -301,6 +315,11 @@ body {
 	color:#8495a3;
 	position:relative;
 	float:left;
+	top: 5px;
+	display:block;
+	word-break: break-all;
+	word-wrap: break-word;
+	max-width: 30%;
 }
 #chat-messages div.message.right .bubble{
 	float:right;
@@ -312,7 +331,8 @@ body {
 	width:7px;
 	height:7px;
 	left:-5px;
-	bottom:0;
+	/*bottom:0;*/
+	top:0;
 }
 div.message.right .corner{
 	background:url("../img/bubble-cornerR.png") 0 0 no-repeat;
@@ -322,9 +342,9 @@ div.message.right .corner{
 .bubble span{
 	  color: #aab8c2;
 	  font-size: 11px;
-	  position: absolute;
-	  right: 0;
-	  bottom: -22px;
+	  /*position: absolute;*/
+	  /*right: 0;*/
+	  /*bottom: -22px;*/
 }
 /*#sendmessage{*/
 	/*height:60px;*/
@@ -348,10 +368,12 @@ div.message.right .corner{
 }
 #sendmessage input{
 	background:#fff;
-	margin:21px 0 0 21px;
+	/*margin:21px 0 0 21px;*/
+	width: 85%;
+	height: 100%;
 	border:none;
 	padding:0;
-	font-size:14px;
+	font-size:24px;
 	font-family:"Open Sans", sans-serif; 
 	font-weight:400px;
 	color:#aab8c2;
@@ -361,11 +383,11 @@ div.message.right .corner{
 }
 #sendmessage button{
 	background:#fff url("../img/send.png") 0 0 no-repeat;
-	width:30px;
-	height:30px;
+	width:32px;
+	height:32px;
 	position:absolute;
 	right: 15px;
-	top: 23px;
+	top: 18px;
 	border:none;
 }
 #sendmessage button:hover{
