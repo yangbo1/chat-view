@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="css/default.css">
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <script src="js/sockjs.js"></script>
+<script src="js/core.js"></script>
 <script src="js/jquery.min.js"></script>
 </head>
 <body>
@@ -321,7 +322,7 @@
 
 	var wsServer = null;
 	var ws = null;
-	wsServer = "ws://192.168.0.114:9090/chatServer/"+ user;
+	wsServer = config.url.server+ user;
 	ws = new WebSocket(wsServer); //创建WebSocket对象
 	if (ws == null) {
 	    alert("aaa")
@@ -343,6 +344,7 @@
 	ws.onclose = function (evt) {
         console.log(evt)
 //		layer.msg("已经关闭连接", { offset: 0});
+        alert("连接已断开")
 	};
 	//
     function addFriendList(data) {
