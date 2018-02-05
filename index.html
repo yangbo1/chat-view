@@ -8,10 +8,11 @@
 <link rel="stylesheet" type="text/css" href="css/default.css">
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <script src="js/sockjs.js"></script>
+<script src="js/jquery.min.js"></script>
 </head>
 <body>
 
-<div id="chatbox">
+<div id="chatbox" class="ui-mobile-viewport ui-overlay-c">
 	<div id="friendslist">
 		<div id="topmenu">
 			<span class="friends"></span>
@@ -177,7 +178,7 @@
 	</div>
 </div>
 
-<script src="js/jquery.min.js"></script>
+
 <script language="javascript">
     function sc(){
         var div = document.getElementById("chat-messages");
@@ -320,7 +321,7 @@
 
 	var wsServer = null;
 	var ws = null;
-	wsServer = "ws://192.168.0.104:9090/chatServer/"+ user;
+	wsServer = "ws://192.168.0.114:9090/chatServer/"+ user;
 	ws = new WebSocket(wsServer); //创建WebSocket对象
 	if (ws == null) {
 	    alert("aaa")
