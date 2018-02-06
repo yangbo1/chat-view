@@ -59,7 +59,9 @@
                 },
                 success:function (data) {
                     if (data.code == "1" && data.content) {
-                        window.location.href = "../index.html?user=hehe"
+                        window.location.href = "../index.html?user="+name
+                    } else {
+                        alert("密码错误")
                     }
                 }
             }
