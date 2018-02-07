@@ -340,12 +340,12 @@
 	ws.onerror = function (evt) {
         console.log(evt)
 //		layer.msg("产生异常", { offset: 0});
-		alert("连接错误，请重新登陆")
+		window.location.href = "user/login.html"
 	};
 	ws.onclose = function (evt) {
         console.log(evt)
 //		layer.msg("已经关闭连接", { offset: 0});
-        alert("连接已断开")
+//        alert("连接已断开")
 	};
 	//
     function addFriendList(data) {
