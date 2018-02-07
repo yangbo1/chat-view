@@ -329,7 +329,8 @@
 	}
 	ws.onopen = function (evt) {
 	    console.log(evt)
-        addFriendList(evt.data);
+		addFriendList(evt.data);
+
 //		layer.msg("已经建立连接", { offset: 0});
 	};
 	ws.onmessage = function (evt) {

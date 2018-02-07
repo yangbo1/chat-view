@@ -60,6 +60,7 @@
                 success:function (data) {
                     if (data.code == "1" && data.content) {
                         window.location.href = "../index.html?user="+name
+                        return false
                     } else {
                         alert("密码错误")
                     }

@@ -27,7 +27,7 @@
 
             <div class="line1">
                 <img src="images/user.png">
-                <input type="text" id="name" class="user" placeholder="用户名" onfocus="if(value=='') {value=''}" onblur="if (value=='') {value=''}" data-role="none">
+                <input type="text" id="name" class="user" placeholder="用户名" onfocus="if(value=='') {value=''}" onblur="" data-role="none">
             </div>
             <!--<div class="line3">-->
                 <!--<img src="images/mail.png">-->
@@ -55,16 +55,22 @@
 <script src="js/main.js"></script>
 <script>
     $("#regist").click(function () {
-
         var name = $("#name").val();
         var password1 = $("#psd1").val();
         var password2 = $("#psd2").val();
+        var regx = /^[\w-]{0,100}/;
+        if (!regx.test(name) || !regx.test(password1)) {
+            alert("不能有空格和特殊字符")
+            return;
+        }
+
         var img = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1977783674,1944110064&fm=27&gp=0.jpg";
         if (name == "" || password1 == "" || password2 == "") {
             return
         }
         if (password1 != password2) {
             alert("密码不一致")
+            return;
         }
         console.log(name, password1)
 
@@ -78,8 +84,11 @@
                     img: img
                 },
                 success:function (data) {
-                  if (data.code == "1") {
+                  if (data.code == "1" && data.content) {
                     window.location.href = "reg-tip.html"
+                  } else {
+                      alert("用户名已存在");
+                      $("#name").val("");
                   }
                 }
             }
