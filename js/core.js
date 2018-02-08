@@ -6,6 +6,7 @@ var config = new function () {
         register: baseUrl + "/service/v1/user/register",
         login: baseUrl + "/service/v1/user/login",
         server: wsServer + "/chatServer/",
+        frineds: baseUrl + "/service/v1/user/findFriendsById/",
     }
 }
 

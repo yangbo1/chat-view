@@ -189,6 +189,7 @@
 </script>
 <script>
 	var chatNotes = [];
+	var selfImg = "";
 	var hehefs = [
 		{
 		    name: "haha",
@@ -349,65 +350,76 @@
 	};
 	//
     function addFriendList(data) {
-    var friend1 = "<div class='friend'>" +
-               		"<img src='img/1_copy.jpg'/>" +
-                        "<p>" +
-							"<strong>haha</strong>"+
-						   "<span>mirobadev@gmail.com</span>" +
-						"</p>" +
-						"<div class='status available'></div>" +
-				   "</div>";
-        var friend2 = "<div class='friend'>" +
-                     "<img src='img/2_copy.jpg'/>" +
-                     "<p>" +
-                     "<strong>hehe</strong>"+
-                     "<span>fuck</span>" +
-                     "</p>" +
-                     "<div class='status available'></div>" +
-                     "</div>";
+//    var friend1 = "<div class='friend'>" +
+//               		"<img src='img/1_copy.jpg'/>" +
+//                        "<p>" +
+//							"<strong>haha</strong>"+
+//						   "<span>mirobadev@gmail.com</span>" +
+//						"</p>" +
+//						"<div class='status available'></div>" +
+//				   "</div>";
+//        var friend2 = "<div class='friend'>" +
+//                     "<img src='img/2_copy.jpg'/>" +
+//                     "<p>" +
+//                     "<strong>hehe</strong>"+
+//                     "<span>fuck</span>" +
+//                     "</p>" +
+//                     "<div class='status available'></div>" +
+//                     "</div>";
 
-        $("#friends").empty();
+//        $("#friends").empty();
         var friend = "";
-        if (user == "hehe") {
-
-            for (var i = 0; i < hehefs.length; i ++) {
-				friend +=  "<div class='friend'>" +
-                              "<img src='"+hehefs[i].img+"'/>" +
-                              "<p>" +
-                              "<strong>"+hehefs[i].name+"</strong>"+
-                              "<span>"+hehefs[i].sign+"</span>" +
-                              "</p>" +
-                              "<div class='status available'></div>" +
-                              "</div>";
-            }
-            $("#friends").append(friend)
-		}
-		if (user == "haha") {
-            for (var i = 0; i < hahafs.length; i ++) {
-                friend +=  "<div class='friend'>" +
-                           "<img src='"+hahafs[i].img+"'/>" +
-                           "<p>" +
-                           "<strong>"+hahafs[i].name+"</strong>"+
-                           "<span>"+hahafs[i].sign+"</span>" +
-                           "</p>" +
-                           "<div class='status available'></div>" +
-                           "</div>";
-            }
-            $("#friends").append(friend)
-		}
-		if (user == "aaa") {
-            for (var i = 0; i < aaafs.length; i ++) {
-                friend +=  "<div class='friend'>" +
-                           "<img src='"+aaafs[i].img+"'/>" +
-                           "<p>" +
-                           "<strong>"+aaafs[i].name+"</strong>"+
-                           "<span>"+aaafs[i].sign+"</span>" +
-                           "</p>" +
-                           "<div class='status available'></div>" +
-                           "</div>";
-            }
-            $("#friends").append(friend)
-		}
+        for (var i = 0; i < data.length; i ++) {
+            friend +=  "<div class='friend'>" +
+                       "<img src='"+data[i].img+"'/>" +
+                       "<p>" +
+                       "<strong>"+data[i].name+"</strong>"+
+                       "<span>("+data[i].remark+")</span>" +
+                       "</p>" +
+                       "<div class='status available'></div>" +
+                       "</div>";
+        }
+        $("#friends").append(friend)
+//        if (user == "hehe") {
+//
+//            for (var i = 0; i < hehefs.length; i ++) {
+//				friend +=  "<div class='friend'>" +
+//                              "<img src='"+hehefs[i].img+"'/>" +
+//                              "<p>" +
+//                              "<strong>"+hehefs[i].name+"</strong>"+
+//                              "<span>"+hehefs[i].sign+"</span>" +
+//                              "</p>" +
+//                              "<div class='status available'></div>" +
+//                              "</div>";
+//            }
+//            $("#friends").append(friend)
+//		}
+//		if (user == "haha") {
+//            for (var i = 0; i < hahafs.length; i ++) {
+//                friend +=  "<div class='friend'>" +
+//                           "<img src='"+hahafs[i].img+"'/>" +
+//                           "<p>" +
+//                           "<strong>"+hahafs[i].name+"</strong>"+
+//                           "<span>"+hahafs[i].sign+"</span>" +
+//                           "</p>" +
+//                           "<div class='status available'></div>" +
+//                           "</div>";
+//            }
+//            $("#friends").append(friend)
+//		}
+//		if (user == "aaa") {
+//            for (var i = 0; i < aaafs.length; i ++) {
+//                friend +=  "<div class='friend'>" +
+//                           "<img src='"+aaafs[i].img+"'/>" +
+//                           "<p>" +
+//                           "<strong>"+aaafs[i].name+"</strong>"+
+//                           "<span>"+aaafs[i].sign+"</span>" +
+//                           "</p>" +
+//                           "<div class='status available'></div>" +
+//                           "</div>";
+//            }
+//            $("#friends").append(friend)
+//		}
 		ready();
     }
     /**
@@ -543,7 +555,7 @@
 
 			var left = "<br><label>"+time+"</label>"+
 				"<div class='message'>" +
-						   "<img src='img/"+from+".jpg' />"+
+						   "<img src='"+selfImg+"' />"+
                 "<span>"+from+"</span>" +
 						   "<div class='bubble'>"+
 						   	content +
@@ -554,7 +566,7 @@
 
 			var right = "<br><label>"+time+"</label>"+
 				"<div class='message right'>" +
-							  "<img src='img/"+from+".jpg' />"+
+							  "<img src='"+selfImg+"' />"+
                 "<span>"+from+"</span>" +
 							   "<div class='bubble'>"+
 							  		content +
@@ -571,6 +583,17 @@
                 var chatNote = $("#chat-messages").html();
                 chatNotes[to] = chatNote;
             }
+		}else if (message.type == "id"){
+		    var id = message.id
+            selfImg = message.img;
+			$.ajax({
+				type: "get",
+				url: config.url.frineds + id,
+				success: function (data) {
+//					console.log(data)
+                    addFriendList(data)
+                }
+				   })
 		}
 		//让聊天窗口滚动到底部
 		sc();
