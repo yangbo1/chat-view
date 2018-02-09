@@ -58,9 +58,9 @@
         var name = $("#name").val();
         var password1 = $("#psd1").val();
         var password2 = $("#psd2").val();
-        var regx = /^[\w-]{0,100}/;
+        var regx = /^[a-zA-Z0-9_-]{0,100}$/;
         if (!regx.test(name) || !regx.test(password1)) {
-            alert("不能有空格和特殊字符")
+            alert("不能有中文、空格和特殊字符")
             return;
         }
 

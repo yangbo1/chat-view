@@ -235,7 +235,7 @@
         }
         return paramValue;
     }
-    var user = getParam("user");;
+    var user = getParam("user");
     function ready() {
         var preloadbg = document.createElement('img');
         preloadbg.src = 'img/timeline1.png';
@@ -368,18 +368,21 @@
 //                     "</div>";
 
 //        $("#friends").empty();
-        var friend = "";
-        for (var i = 0; i < data.length; i ++) {
-            friend +=  "<div class='friend'>" +
-                       "<img src='"+data[i].img+"'/>" +
-                       "<p>" +
-                       "<strong>"+data[i].name+"</strong>"+
-                       "<span>("+data[i].remark+")</span>" +
-                       "</p>" +
-                       "<div class='status available'></div>" +
-                       "</div>";
-        }
-        $("#friends").append(friend)
+		if (data) {
+            var friend = "";
+            for (var i = 0; i < data.length; i ++) {
+                friend +=  "<div class='friend'>" +
+                           "<img src='"+data[i].img+"'/>" +
+                           "<p>" +
+                           "<strong>"+data[i].name+"</strong>"+
+                           "<span>("+data[i].remark+")</span>" +
+                           "</p>" +
+                           "<div class='status available'></div>" +
+                           "</div>";
+            }
+            $("#friends").append(friend)
+		}
+
 //        if (user == "hehe") {
 //
 //            for (var i = 0; i < hehefs.length; i ++) {
