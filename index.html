@@ -236,6 +236,7 @@
         return paramValue;
     }
     var user = getParam("user");
+	var nowName = "";
     function ready() {
         var preloadbg = document.createElement('img');
         preloadbg.src = 'img/timeline1.png';
@@ -290,14 +291,17 @@
                 var email = $(this).find('p span').html();
                 $('#profile p').html(name);
                 $('#profile span').html(email);
+
                 $('.message').not('.right').find('img').attr('src', $(clone).attr('src'));
                 $('#friendslist').fadeOut();
                 $('#chat-messages').empty();
                 $('#chat-messages').append(chatNotes[name]);
+                nowName = name;
                 $('#chatview').fadeIn();
                 //让聊天窗口滚动到底部
                 sc();
                 $('#close').unbind('click').click(function () {
+                    nowName = "";
                     $('#chat-messages, #profile, #profile p').removeClass('animate');
                     $('.cx, .cy').removeClass('s1 s2 s3');
                     $('.floatingImg').animate({
@@ -345,6 +349,7 @@
 	};
 	ws.onclose = function (evt) {
         console.log(evt)
+        window.location.href = "user/login.html"
 //		layer.msg("已经关闭连接", { offset: 0});
 //        alert("连接已断开")
 	};
@@ -578,9 +583,16 @@
 							   "</div>" +
 					    "</div>";
             if (to == user) {
-                $("#chat-messages").append(left);
-                var chatNote = $("#chat-messages").html();
-                chatNotes[from] = chatNote;
+                if (nowName == to) {
+                    $("#chat-messages").append(left);
+                    var chatNote = $("#chat-messages").html();
+                    chatNotes[from] = chatNote;
+                } else {
+                    var chatNote = $("#chat-messages").html();
+                    chatNote += left;
+                    chatNotes[from] = chatNote;
+				}
+
 			} else if (from == user){
                 $("#chat-messages").append(right);
                 var chatNote = $("#chat-messages").html();
