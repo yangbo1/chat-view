@@ -588,7 +588,7 @@
                     var chatNote = $("#chat-messages").html();
                     chatNotes[from] = chatNote;
                 } else {
-                    var chatNote = $("#chat-messages").html();
+                    var chatNote = chatNotes[from];
                     chatNote += left;
                     chatNotes[from] = chatNote;
 				}
