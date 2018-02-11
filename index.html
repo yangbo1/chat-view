@@ -190,6 +190,7 @@
 <script>
 	var chatNotes = [];
 	var selfImg = "";
+	var onlineFriends = [];
 	var hehefs = [
 		{
 		    name: "haha",
@@ -376,14 +377,20 @@
 		if (data) {
             var friend = "";
             for (var i = 0; i < data.length; i ++) {
-                friend +=  "<div class='friend'>" +
-                           "<img src='"+data[i].img+"'/>" +
-                           "<p>" +
-                           "<strong>"+data[i].name+"</strong>"+
-                           "<span>("+data[i].remark+")</span>" +
-                           "</p>" +
-                           "<div class='status available'></div>" +
-                           "</div>";
+                if ($.inArray(data[i].name, onlineFriends) != -1){
+
+				} else {
+                    friend +=  "<div class='friend' id='f"+data[i].name+"'>" +
+                               "<img src='"+data[i].img+"'/>" +
+                               "<p>" +
+                               "<strong>"+data[i].name+"</strong>"+
+                               "<span>("+data[i].remark+")</span>" +
+                               "</p>" +
+                               "<div class='status available'></div>" +
+                               "</div>";
+                    onlineFriends.push(data[i].name)
+				}
+
             }
             $("#friends").append(friend)
 		}
@@ -429,6 +436,14 @@
 //            $("#friends").append(friend)
 //		}
 		ready();
+    }
+    function removeFriend(data) {
+        if ($.inArray(data, onlineFriends) != -1) {
+            $("#f"+data+"").remove();
+            onlineFriends.splice($.inArray(data,onlineFriends),1);
+            ready();
+		}
+
     }
     /**
 	 * 连接
@@ -601,14 +616,25 @@
 		}else if (message.type == "id"){
 		    var id = message.id
             selfImg = message.img;
+		    var online = message.online;
+		    console.log(online)
 			$.ajax({
-				type: "get",
-				url: config.url.frineds + id,
+				type: "POST",
+				dataType: "json",
+				url: config.url.frineds ,
+			    traditional: true,
+				data: {
+                    "online": online,
+                    "self": user
+                },
 				success: function (data) {
 //					console.log(data)
                     addFriendList(data)
                 }
 				   })
+		} else if (message.type == "off"){
+			console.log(message)
+			removeFriend(message.message)
 		}
 		//让聊天窗口滚动到底部
 		sc();

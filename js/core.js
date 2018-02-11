@@ -1,4 +1,4 @@
-//全局配置
+//全局配置120.77.148.33
 var baseUrl = "http://120.77.148.33:9090";
 var wsServer = "ws://120.77.148.33:9090";
 var config = new function () {
@@ -7,6 +7,7 @@ var config = new function () {
         login: baseUrl + "/service/v1/user/login",
         server: wsServer + "/chatServer/",
         frineds: baseUrl + "/service/v1/user/findFriendsById/",
+        frineds: baseUrl + "/service/v1/user/findFriendsByName",
     }
 }
 
