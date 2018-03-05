@@ -296,6 +296,25 @@
                 $('.message').not('.right').find('img').attr('src', $(clone).attr('src'));
                 $('#friendslist').fadeOut();
                 $('#chat-messages').empty();
+                if (chatNotes[name] == null) {
+                    $.ajax({
+						type: "POST",
+						url: config.url.findChatMessage,
+						dataType: "json",
+						data: {
+						    "userA": user,
+							"userB": name,
+							"pageIndex": 0
+						},
+						success: function (data) {
+							if (data) {
+							    for(var i = 0; i < data.length; i ++) {
+                                    analysisMessage(data[i].chatMessage)
+                                }
+							}
+                        }
+						   })
+				}
                 $('#chat-messages').append(chatNotes[name]);
                 nowName = name;
                 $('#chatview').fadeIn();
