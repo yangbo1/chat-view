@@ -378,17 +378,33 @@
             var friend = "";
             for (var i = 0; i < data.length; i ++) {
                 if ($.inArray(data[i].name, onlineFriends) != -1){
-
+                    if ($("#f"+data[i].name+"").length > 0) {
+                        $("#f"+data[i].name+"").find('div[id^="status"]').attr("class", "status available")
+                    } else {
+                        friend +=  "<div class='friend' id='f"+data[i].name+"'>" +
+                                   "<img src='"+data[i].img+"'/>" +
+                                   "<p>" +
+                                   "<strong>"+data[i].name+"</strong>"+
+                                   "<span>("+data[i].remark+")</span>" +
+                                   "</p>" +
+                                   "<div class='status available' id='status'></div>" +
+                                   "</div>";
+//                        onlineFriends.push(data[i].name)
+                    }
 				} else {
-                    friend +=  "<div class='friend' id='f"+data[i].name+"'>" +
-                               "<img src='"+data[i].img+"'/>" +
-                               "<p>" +
-                               "<strong>"+data[i].name+"</strong>"+
-                               "<span>("+data[i].remark+")</span>" +
-                               "</p>" +
-                               "<div class='status available'></div>" +
-                               "</div>";
-                    onlineFriends.push(data[i].name)
+                    if ($("#f" + data[i].name + "").length > 0) {
+                        $("#f" + data[i].name + "").find('div[id^="status"]').attr("class", "status inactive")
+                    }else {
+                    friend += "<div class='friend' id='f" + data[i].name + "'>" +
+                              "<img src='" + data[i].img + "'/>" +
+                              "<p>" +
+                              "<strong>" + data[i].name + "</strong>" +
+                              "<span>(" + data[i].remark + ")</span>" +
+                              "</p>" +
+                              "<div class='status inactive' id='status'></div>" +
+                              "</div>";
+//                        onlineFriends.push(data[i].name)
+                }
 				}
 
             }
@@ -439,7 +455,8 @@
     }
     function removeFriend(data) {
         if ($.inArray(data, onlineFriends) != -1) {
-            $("#f"+data+"").remove();
+//            $("#f"+data+"").remove();
+            $("#f"+data+"").find('div[id^="status"]').attr("class", "status inactive")
             onlineFriends.splice($.inArray(data,onlineFriends),1);
             ready();
 		}
@@ -453,7 +470,7 @@
 			ws = new WebSocket(wsServer); //创建WebSocket对象
 			ws.onopen = function (evt) {
 //				layer.msg("成功建立连接!", { offset: 0});
-				addFriendList(evt.data);
+//				addFriendList(evt.data);
 			};
 			ws.onmessage = function (evt) {
 				analysisMessage(evt.data);  //解析后台传回的消息,并予以展示
@@ -617,7 +634,8 @@
 		    var id = message.id
             selfImg = message.img;
 		    var online = message.online;
-		    console.log(online)
+		    onlineFriends = online;
+		    console.log(onlineFriends)
 			$.ajax({
 				type: "POST",
 				dataType: "json",
