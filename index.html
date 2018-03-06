@@ -683,7 +683,7 @@
 		}
 	}
     function timestampToTime(timestamp) {
-        var date = new Date(timestamp).toLocaleTimeString();//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+
 //        Y = date.getFullYear() + '-';
 //        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
 //        D = date.getDate() + ' ';
@@ -691,7 +691,50 @@
 //        m = date.getMinutes() + ':';
 //        s = date.getSeconds();
 //        return Y+M+D+h+m+s;
-		return date;
+		var date = new Date(timestamp);
+        var datetime = date.toLocaleTimeString();//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        var year = date.getFullYear();
+        var mon = date.getMonth();
+        var daym = date.getDate(); //1-31
+        var day = date.getDay();//0 1 2 3 4 5 6 星期天到星期六
+		function day7(d) {
+			switch (d) {
+				case 0 : return  "星期天"
+				case 1 : return  "星期一"
+				case 2 : return "星期二"
+				case 3 : return  "星期三"
+				case 4 : return "星期四"
+				case 5 : return "星期五"
+				case 6 : return "星期六"
+			}
+        }
+        var now = new Date();
+		var nowyear = now.getFullYear();
+		var nowmon = now.getMonth();
+		var nowdaym = now.getDate()
+        var nowday = now.getDay();
+		if (nowyear == year) {//今年
+			if (nowmon == mon) {//本月
+			    if (nowdaym - daym < 7) {//一周内
+			        if(nowdaym - daym == 1) {//昨天
+                        return "昨天 " + datetime
+					} else if (nowdaym - daym == 0) {//今天
+							return datetime
+						}
+						else {
+                            return day7(day) + " " + datetime
+                        }
+
+				} {
+                    return mon + "-" + daym + " " +datetime
+				}
+			} else {
+                return mon + "-" + daym + " " +datetime
+			}
+		} else {
+		    return year +"-" + mon + "-" + daym + " " +datetime
+		}
+
     }
 //    timestampToTime(1403058804);
 //    console.log(timestampToTime(1403058804));//2014-06-18 10:33:24
