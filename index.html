@@ -10,6 +10,8 @@
 <script src="js/sockjs.js"></script>
 <script src="js/core.js"></script>
 <script src="js/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+<script src="jquery.qqFace.js"></script>
 </head>
 <body>
 
@@ -170,8 +172,9 @@
 		<!--</div>-->
 		<!---->
 		</div>
+		<span class="emotion"></span>
 		<div id="sendmessage">
-			<input type="text" placeholder="Send message..." id="message"/>
+			<textarea class="input" id="message"></textarea>
 			<button id="send"></button>
 		</div>
 	
@@ -185,6 +188,27 @@
         var div = document.getElementById("chat-messages");
 //        div.innerText += "\n" + (i++).toString(); //可以不要
         div.scrollTop = div.scrollHeight;
+    }
+</script>
+<script type="text/javascript">
+    $(function(){
+        $('.emotion').qqFace({
+                                 id : 'facebox', //表情盒子的ID
+                                 assign:'message', //给那个控件赋值
+                                 path:'face/'	//表情存放的路径
+                             });
+        $(".sub_btn").click(function(){
+            var str = $("#message").val();
+//            $("#show").html(replace_em(str));
+        });
+    });
+    //查看结果
+    function replace_em(str){
+        str = str.replace(/\</g,'&lt;');
+        str = str.replace(/\>/g,'&gt;');
+        str = str.replace(/\n/g,'<br/>');
+        str = str.replace(/\[em_([0-9]*)\]/g,'<img src="face/$1.gif" border="0" />');
+        return str;
     }
 </script>
 <script>
@@ -600,6 +624,7 @@
 				 </div>
 				 </div>
 	 */
+
 	function analysisMessage(message){
 		message = JSON.parse(message);
 		if(message.type == "message"){      //会话消息
@@ -614,10 +639,10 @@
 
 			var left = "<br><label>"+time+"</label>"+
 				"<div class='message'>" +
-						   "<img src='"+selfImg+"' />"+
+						   "<img class='img1' src='"+selfImg+"' />"+
                 "<span>"+from+"</span>" +
 						   "<div class='bubble'>"+
-						   	content +
+                       replace_em(content) +
 							   "<div class='corner'></div>" +
 //							   "<span>"+from +":"+ time +"</span>" +
 						   "</div>" +
@@ -625,10 +650,10 @@
 
 			var right = "<br><label>"+time+"</label>"+
 				"<div class='message right'>" +
-							  "<img src='"+selfImg+"' />"+
+							  "<img class='img1' src='"+selfImg+"' />"+
                 "<span>"+from+"</span>" +
 							   "<div class='bubble'>"+
-							  		content +
+                        replace_em(content) +
 									"<div class='corner'></div>" +
 //								   "<span>"+from +":"+ time +"</span>" +
 							   "</div>" +
