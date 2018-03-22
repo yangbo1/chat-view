@@ -423,6 +423,28 @@ span.emotion:hover{background-position:2px -28px}-->#sendmessage button:hover{
 #close:hover{
 	opacity:1;
 }
+#close1{
+	position:absolute;
+	top: 8px;
+	opacity:0.8;
+	right: 10px;
+	width:20px;
+	height:20px;
+	cursor:pointer;
+}
+#close1:hover{
+	opacity:1;
+}
+#myInfo{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
 .cx, .cy{
 	background:#fff;
 	position:absolute;

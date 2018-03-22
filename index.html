@@ -12,67 +12,17 @@
 <script src="js/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
 <script src="jquery.qqFace.js"></script>
+<link rel="stylesheet" href="css/info.css" />
 </head>
 <body>
 
 <div id="chatbox" class="ui-mobile-viewport ui-overlay-c">
 	<div id="friendslist">
 		<div id="topmenu">
-			<span class="friends"></span>
-			<span class="chats"></span>
-			<!--<span class="history"></span>-->
+			<span onclick="openInfo()" id='myInfo'><strong>我的资料</strong></span>
 		</div>
 		
 		<div id="friends" style="height:414px;overflow:auto">
-			<!--<div class="friend">-->
-				<!--<img src="img/1_copy.jpg" />-->
-				<!--<p>-->
-					<!--<strong>haha</strong>-->
-					<!--<span>mirobadev@gmail.com</span>-->
-				<!--</p>-->
-				<!--<div class="status available"></div>-->
-			<!--</div>-->
-			<!---->
-			<!--<div class="friend">-->
-				<!--<img src="img/2_copy.jpg" />-->
-				<!--<p>-->
-					<!--<strong>hehe</strong>-->
-					<!--<span>marjoseph@gmail.com</span>-->
-				<!--</p>-->
-				<!--<div class="status away"></div>-->
-			<!--</div>-->
-			<!---->
-			<!--<div class="friend">-->
-				<!--<img src="img/3_copy.jpg" />-->
-				<!--<p>-->
-					<!--<strong>Tomas Kennedy</strong>-->
-					<!--<span>tomaskennedy@gmail.com</span>-->
-				<!--</p>-->
-				<!--<div class="status inactive"></div>-->
-			<!--</div>-->
-			<!---->
-			<!--<div class="friend">-->
-				<!--<img src="img/4_copy.jpg" />-->
-				<!--<p>-->
-					<!--<strong>Enrique	Sutton</strong>-->
-					<!--<span>enriquesutton@gmail.com</span>-->
-				<!--</p>-->
-				<!--<div class="status inactive"></div>-->
-			<!--</div>-->
-			<!---->
-			<!--<div class="friend">-->
-				<!--<img src="img/5_copy.jpg" />-->
-				<!--<p>-->
-				<!--<strong>	Darnell	Strickland</strong>-->
-					<!--<span>darnellstrickland@gmail.com</span>-->
-				<!--</p>-->
-				<!--<div class="status inactive"></div>-->
-			<!--</div>-->
-
-			<!--<div id="search">-->
-				<!--<input type="text" id="searchfield" value="Search contacts..." />-->
-			<!--</div>-->
-			
 		</div>                
 
 	</div>	
@@ -89,88 +39,6 @@
 			<span>miro@badev@gmail.com</span>
 		</div>
 		<div id="chat-messages">
-			<!--<label>Thursday 02</label>-->
-			<!---->
-			<!--<div class="message">-->
-				<!--<img src="img/1_copy.jpg" />-->
-				<!--<div class="bubble">-->
-					<!--Really cool stuff!-->
-					<!--<div class="corner"></div>-->
-					<!--<span>3 min</span>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!---->
-			<!--<div class="message right">-->
-				<!--<img src="img/2_copy.jpg" />-->
-				<!--<div class="bubble">-->
-					<!--Can you share a link for the tutorial?-->
-					<!--<div class="corner"></div>-->
-					<!--<span>1 min</span>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!---->
-			<!--<div class="message">-->
-				<!--<img src="img/1_copy.jpg" />-->
-				<!--<div class="bubble">-->
-					<!--Yeah, hold on-->
-					<!--<div class="corner"></div>-->
-					<!--<span>Now</span>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!---->
-			<!--<div class="message right">-->
-				<!--<img src="img/2_copy.jpg" />-->
-				<!--<div class="bubble">-->
-					<!--Can you share a link for the tutorial?-->
-					<!--<div class="corner"></div>-->
-					<!--<span>1 min</span>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!---->
-			<!--<div class="message">-->
-				<!--<img src="img/1_copy.jpg" />-->
-				<!--<div class="bubble">-->
-					<!--Yeah, hold on-->
-					<!--<div class="corner"></div>-->
-					<!--<span>Now</span>-->
-				<!--</div>-->
-			<!--</div>-->
-
-			<!--<div class="message">-->
-				<!--<img src="img/1_copy.jpg" />-->
-				<!--<div class="bubble">-->
-					<!--Yeah, hold on-->
-					<!--<div class="corner"></div>-->
-					<!--<span>Now</span>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="message">-->
-				<!--<img src="img/1_copy.jpg" />-->
-				<!--<div class="bubble">-->
-					<!--Yeah, hold on-->
-					<!--<div class="corner"></div>-->
-					<!--<span>Now</span>-->
-				<!--</div>-->
-			<!--</div>-->
-
-			<!--<div class="message">-->
-				<!--<img src="img/1_copy.jpg" />-->
-				<!--<div class="bubble">-->
-					<!--Yeah, hold on-->
-					<!--<div class="corner"></div>-->
-					<!--<span>Now</span>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="message">-->
-				<!--<img src="img/1_copy.jpg" />-->
-				<!--<div class="bubble">-->
-					<!--Yeah, hold on-->
-					<!--<div class="corner"></div>-->
-					<!--<span>Now</span>-->
-				<!--</div>-->
-			<!--</div>-->
-		<!--</div>-->
-		<!---->
 		</div>
 		<span class="emotion"></span>
 		<div id="sendmessage">
@@ -180,9 +48,68 @@
 	
 
 	</div>
+
+	<div id="info" style="display: none">
+
+		<div class="banner">
+			<img src="img/banner.jpg" />
+		</div>
+		<div id="close1">
+			<div class="cy"></div>
+			<div class="cx"></div>
+		</div>
+		<ul class="information">
+			<h2>基本信息</h2>
+			<form id="form">
+				<li>
+					<label>账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 号：</label>
+					<span maxlength="100" id="name1"></span>
+				</li>
+			<li>
+				<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 名：</label>
+				<input class="infor-input" placeholder="" type="text"  maxlength="100" id="realName" name="realName" />
+			</li>
+			<li>
+				<label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 别：</label>
+				<input id="man" type="radio" checked="" name="gender" value="男"/>男
+				<input id="woman" type="radio" checked="" name="gender" value="女"/>女
+			</li>
+			<li>
+				<label>签&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 名：</label>
+				<input class="infor-input" placeholder="" maxlength="100" id="remark" name="remark" type="text" />
+			</li>
+			<li>
+				<label>手&nbsp;&nbsp;机&nbsp;&nbsp;号：</label>
+				<input class="infor-input" placeholder="" type="text" maxlength="100" id="phone" name="phone" />
+			</li>
+			<!--<li>-->
+				<!--<label>微&nbsp;&nbsp;信&nbsp;&nbsp;号：</label>-->
+				<!--<input class="infor-input" placeholder="" type="text" maxlength="100" id="wechat" name="wechat" />-->
+			<!--</li>-->
+			<li>
+				<label>院&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 校：</label>
+				<input class="infor-input" placeholder="" maxlength="100" id="school" name="school" type="text" />
+			</li>
+			<li>
+				<label>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 业：</label>
+				<input class="infor-input" placeholder="" maxlength="100" id="career" name="career" type="text" />
+			</li>
+			<li>
+				<label>工作地点：</label>
+				<input class="infor-input" placeholder="" maxlength="50" id="jobAddress" name="jobAddress" type="text" />
+			</li>
+			</form>
+		</ul>
+		<a class="submit-btn">保存</a>
+	</div>
 </div>
 
-
+<script type="text/javascript">
+    !function(J){function H(){var d=E.getBoundingClientRect().width;var e=(d/7.5>100*B?100*B:(d/7.5<42?42:d/7.5));E.style.fontSize=e+"px",J.rem=e}var G,F=J.document,E=F.documentElement,D=F.querySelector('meta[name="viewport"]'),B=0,A=0;if(D){var y=D.getAttribute("content").match(/initial\-scale=([\d\.]+)/);y&&(A=parseFloat(y[1]),B=parseInt(1/A))}if(!B&&!A){var u=(J.navigator.appVersion.match(/android/gi),J.navigator.appVersion.match(/iphone/gi)),t=J.devicePixelRatio;B=u?t>=3&&(!B||B>=3)?3:t>=2&&(!B||B>=2)?2:1:1,A=1/B}if(E.setAttribute("data-dpr",B),!D){if(D=F.createElement("meta"),D.setAttribute("name","viewport"),D.setAttribute("content","initial-scale="+A+", maximum-scale="+A+", minimum-scale="+A+", user-scalable=no"),E.firstElementChild){E.firstElementChild.appendChild(D)}else{var s=F.createElement("div");s.appendChild(D),F.write(s.innerHTML)}}J.addEventListener("resize",function(){clearTimeout(G),G=setTimeout(H,300)},!1),J.addEventListener("pageshow",function(b){b.persisted&&(clearTimeout(G),G=setTimeout(H,300))},!1),H()}(window);
+    if (typeof(M) == 'undefined' || !M){
+        window.M = {};
+    }
+</script>
 <script language="javascript">
     function sc(){
         var div = document.getElementById("chat-messages");
@@ -293,6 +220,7 @@
                 var clone = $(this).find('img').eq(0).clone();
                 var top = childTop + 12 + 'px';
                 $(clone).css({ 'top': top }).addClass('floatingImg').appendTo('#chatbox');
+                $(clone).removeAttr("onclick");
                 setTimeout(function () {
                     $('#profile p').addClass('animate');
                     $('#profile').addClass('animate');
@@ -417,15 +345,27 @@
 //                     "</div>";
 
 //        $("#friends").empty();
+        var friend = "";
+        if (!$("#group").length > 0) {
+            friend +=  "<div class='friend' id='group'>" +
+                       "<img src='img/group.jpg' />" +
+                       "<p>" +
+                       "<strong>群聊</strong>"+
+                       "<span>(二胡卵子们来聊天啊)</span>" +
+                       "</p>" +
+                       "<div class='status available' id='status'></div>" +
+                       "</div>";
+		}
+
 		if (data) {
-            var friend = "";
             for (var i = 0; i < data.length; i ++) {
+                var na = "\""+data[i].name+"\"";
                 if ($.inArray(data[i].name, onlineFriends) != -1){
                     if ($("#f"+data[i].name+"").length > 0) {
                         $("#f"+data[i].name+"").find('div[id^="status"]').attr("class", "status available")
                     } else {
                         friend +=  "<div class='friend' id='f"+data[i].name+"'>" +
-                                   "<img src='"+data[i].img+"'/>" +
+                                   "<img src='"+data[i].img+"' onclick='openInfo("+na+")'/>" +
                                    "<p>" +
                                    "<strong>"+data[i].name+"</strong>"+
                                    "<span>("+data[i].remark+")</span>" +
@@ -439,7 +379,7 @@
                         $("#f" + data[i].name + "").find('div[id^="status"]').attr("class", "status inactive")
                     }else {
                     friend += "<div class='friend' id='f" + data[i].name + "'>" +
-                              "<img src='" + data[i].img + "'/>" +
+                              "<img src='" + data[i].img + "' onclick='openInfo("+na+")'/>" +
                               "<p>" +
                               "<strong>" + data[i].name + "</strong>" +
                               "<span>(" + data[i].remark + ")</span>" +
@@ -674,6 +614,12 @@
                 var chatNote = $("#chat-messages").html();
                 chatNotes[to] = chatNote;
             }
+            if (to == "群聊" && from != user) {
+                $("#chat-messages").append(left);
+                var chatNote = $("#chat-messages").html();
+                chatNotes["群聊"] = chatNote;
+			}
+
 		}else if (message.type == "id"){
 		    var id = message.id
             selfImg = message.img;
@@ -763,6 +709,123 @@
     }
 //    timestampToTime(1403058804);
 //    console.log(timestampToTime(1403058804));//2014-06-18 10:33:24
+    /**
+	 * 个人信息
+     */
+    function openInfo(name) {
+        e = window.event || e;
+        if (e.stopPropagation) {
+            e.stopPropagation();      //阻止事件 冒泡传播
+        } else {
+            e.cancelBubble = true;   //ie兼容
+        }
+        if (!name) {
+            var url = config.url.info + "/"+user
+		} else {
+            var url = config.url.info + "/"+name
+		}
+
+        setTimeout(function () {
+//            $('#chat-messages').addClass('animate');
+            $('.cx, .cy').addClass('s1');
+            setTimeout(function () {
+                $('.cx, .cy').addClass('s2');
+            }, 100);
+            setTimeout(function () {
+                $('.cx, .cy').addClass('s3');
+            }, 200);
+        }, 150);
+//        if (!name){
+//            $('#friendslist').fadeOut();
+//        } else {
+//            $("#chat-messages").fadeOut();
+//		}
+//        $("#info").fadeIn()
+        $('#friendslist').fadeOut();
+		$("#info").fadeIn();
+		$.ajax({
+			type: "get",
+			url: url,
+			success:function (data) {
+//				console.log(data)
+				if (data) {
+					$("#realName").val(data.realName)
+					$("#name1").text(data.name)
+					if (data.gender == "男") {$("#man").attr("checked", true)}
+					if (data.gender == "女") {$("#woman").attr("checked", true)}
+					$("#remark").val(data.remark)
+					$("#phone").val(data.phone)
+					$("#wehcat").val(data.wechat)
+					$("#jobAddress").val(data.jobAddress)
+					$("#career").val(data.career)
+					$("#school").val(data.school)
+//					$("#wechat").val(data.wechat)
+					if (data.name != user) {
+                        $(".submit-btn").hide()
+						$("#info input").each(function () {
+							$(this).attr("disabled", "disabled")
+                        })
+					} else {
+                        $(".submit-btn").show()
+                        $("#info input").each(function () {
+                            $(this).removeAttr("disabled", "disabled")
+                        })
+					}
+				}
+            }
+
+			   })
+        $('#close1').unbind('click').click(function () {
+            $('.cx, .cy').removeClass('s1 s2 s3');
+            setTimeout(function () {
+
+                $('#info').hide();
+//                if (!name) {
+//                    $('#friendslist').fadeIn();
+//                } else {
+//                    $("#chat-messages").fadeIn();
+//				}
+                $('#friendslist').fadeIn();
+            }, 50);
+        });
+    }
+    $(".submit-btn").click(function () {
+        var realName = $("#realName").val()
+		var gender = $("input[name='gender']:checked").val()
+        var remark = $("#remark").val()
+        var phone = $("#phone").val()
+//        var wechat = $("#wechat").val()
+        var jobAddress = $("#jobAddress").val()
+		var career = $("#career").val()
+        var school = $("#school").val();
+        data1 = {
+            "realName": realName,
+			"gender": gender,
+			"remark": remark,
+			"phone": phone,
+//			"wechat": wechat,
+			"jobAddress": jobAddress,
+			"career": career,
+			"school": school,
+//			"img": "",
+			"name": user
+        },
+		$.ajax({
+			type: "POST",
+			url: config.url.edit,
+			dataType: "json",
+		    contentType: "application/json",
+		    traditional: true,
+			data: JSON.stringify(data1),
+			success: function (data) {
+			    if (data == "0") {
+			        alert("保存成功")
+				} else {
+			        alert("保存失败，请重试")
+				}
+            }
+			   })
+    })
 </script>
 
 </body>

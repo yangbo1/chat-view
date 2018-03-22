@@ -9,6 +9,8 @@ var config = new function () {
         // frineds: baseUrl + "/service/v1/user/findFriendsById/",
         frineds: baseUrl + "/service/v1/user/findFriendsByName",
         findChatMessage: baseUrl + "/service/v1/user/findChatMessage",
+        info: baseUrl + "/service/v1/user/findInfo",
+        edit: baseUrl + "/service/v1/user/editInfo",
     }
 }
 
