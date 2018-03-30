@@ -49,7 +49,7 @@
 
 	</div>
 
-	<div id="info" style="display: none">
+	<div id="info" style="display: none; overflow: auto">
 
 		<div class="banner">
 			<img src="img/banner.jpg" />
@@ -60,7 +60,7 @@
 		</div>
 		<ul class="information">
 			<h2>基本信息</h2>
-			<form id="form">
+			<form id="form" style="overflow: auto; max-height: 350px">
 				<li>
 					<label>账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 号：</label>
 					<span maxlength="100" id="name1"></span>
@@ -98,9 +98,10 @@
 				<label>工作地点：</label>
 				<input class="infor-input" placeholder="" maxlength="50" id="jobAddress" name="jobAddress" type="text" />
 			</li>
+				<a class="submit-btn">保存</a>
 			</form>
 		</ul>
-		<a class="submit-btn">保存</a>
+
 	</div>
 </div>
 

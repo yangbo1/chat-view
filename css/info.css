@@ -7,7 +7,7 @@ ul, ol{list-style: none;}
 a{color: black;text-decoration: none;}
 a:hover{text-decoration: none;}
 img{max-width: 100%; width: auto; height: auto; vertical-align: top; border: 0;}
-.banner img{ width: 100%;}
+.banner img{ width: 100%;max-height: 300px}
 .information{ margin: .3rem; background: #fff; padding: .3rem;}
 .information li{  border-bottom:1px dashed #ddd; line-height: .8rem;  overflow: hidden; position: relative;}
 .information li label{ float: left; width: 32%; font-size:.28rem; color: #321c0b;}
