@@ -11,6 +11,7 @@ var config = new function () {
         findChatMessage: baseUrl + "/service/v1/user/findChatMessage",
         info: baseUrl + "/service/v1/user/findInfo",
         edit: baseUrl + "/service/v1/user/editInfo",
+        stopTime: baseUrl + "/service/v1/user/stopTime",
     }
 }
 

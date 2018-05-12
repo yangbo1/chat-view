@@ -143,6 +143,7 @@
 	var chatNotes = [];
 	var selfImg = "";
 	var onlineFriends = [];
+	var stopTime = 0;
 	var hehefs = [
 		{
 		    name: "haha",
@@ -245,11 +246,27 @@
                 var email = $(this).find('p span').html();
                 $('#profile p').html(name);
                 $('#profile span').html(email);
+				if (name == "群聊") {
+                    if (stopTime > new Date().getTime() && $("#chatview #profile p").text() == "群聊") {
+                        $("#chatview #sendmessage #send").attr("disabled","disabled");
+                        $("#chatview #sendmessage #message").attr("value", "您已被禁言，"+timestampToTime(stopTime)+"解除");
+                        setTimeout(function () {
+                            $("#chatview #sendmessage #send").removeAttr("disabled");
+                            $("#chatview #sendmessage #message").val("");
+                        }, stopTime - new Date().getTime());
+                    } else {
+                        $("#chatview #sendmessage #send").removeAttr("disabled");
+                        $("#chatview #sendmessage #message").val("");
+					}
+				} else {
+                    $("#chatview #sendmessage #send").removeAttr("disabled");
+                    $("#chatview #sendmessage #message").val("");
+				}
 
                 $('.message').not('.right').find('img').attr('src', $(clone).attr('src'));
                 $('#friendslist').fadeOut();
                 $('#chat-messages').empty();
-                if (chatNotes[name] == null) {
+                chatNotes[name] = []
                     $.ajax({
 						type: "POST",
 						url: config.url.findChatMessage,
@@ -267,7 +284,7 @@
 							}
                         }
 						   })
-				}
+
                 $('#chat-messages').append(chatNotes[name]);
                 nowName = name;
                 $('#chatview').fadeIn();
@@ -436,6 +453,18 @@
 //            $("#friends").append(friend)
 //		}
 		ready();
+        $.ajax({
+			type: "get",
+			url: config.url.stopTime+"/"+user,
+			success: function (data) {
+				if (data != null ) {
+                    var m = JSON.parse(data).message;
+                    var t = m.content
+					var start = m.time;
+                    stopTime = t*1000 + start;
+				}
+            }
+		})
     }
     function removeFriend(data) {
         if ($.inArray(data, onlineFriends) != -1) {
@@ -644,6 +673,23 @@
 		} else if (message.type == "off"){
 			console.log(message)
 			removeFriend(message.message)
+		} else if (message.type == "stop" && message.message.to == user) {
+		    console.log(message.message);
+		    var t = message.message.content;
+		    var start = message.message.time;
+		    var end = start + t*1000;
+		    stopTime = end;
+		    if (end > new Date().getTime() && $("#chatview #profile p").text() == "群聊") {
+                $("#chatview #sendmessage #send").attr("disabled","disabled");
+                $("#chatview #sendmessage #message").attr("value", "您已被禁言，"+timestampToTime(end)+"解除");
+                setTimeout(function () {
+                    $("#chatview #sendmessage #send").removeAttr("disabled");
+                    $("#chatview #sendmessage #message").val("");
+                }, end - new Date().getTime());
+			} else {
+                $("#chatview #sendmessage #send").removeAttr("disabled");
+                $("#chatview #sendmessage #message").val("");
+			}
 		}
 		//让聊天窗口滚动到底部
 		sc();
